@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ImageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,3 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('postImage', [ImageController::class, 'postImage']);
+Route::post('userPhothos', [AuthController::class, 'userPhothos']);
+Route::post('register', [AuthController::class, 'register']);

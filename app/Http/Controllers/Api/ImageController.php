@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Image;
+use App\Models\UserPhoto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -18,7 +19,7 @@ class ImageController extends Controller
             $newContent->save();
             return response()->json(['message' => 'archivo subido con éxito']);
         } else {
-            return response()->json(['message' => 'Error al subir el aaarchivo']);
+            return response()->json(['message' => 'Error al subir el aarchivo']);
         }
     }
 }
