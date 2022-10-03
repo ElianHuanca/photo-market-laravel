@@ -15,25 +15,33 @@ class TipoEventoSeeder extends Seeder
      */
     public function run()
     {
-        $tipo = new TipoEvento();
-        $tipo->nombre="Cumpleaños";
+        $tipo= new TipoEvento();
+        $tipo->tipo='Cumpleaños';
         $tipo->save();
 
-
-        $tipo = new TipoEvento();
-        $tipo->nombre="Quinceaños";
+        $tipo= new TipoEvento();
+        $tipo->tipo='Boda';
         $tipo->save();
 
-        $tipo = new TipoEvento();
-        $tipo->nombre="Matrimonio";
+        $tipo= new TipoEvento();
+        $tipo->tipo='Quinceaños';
         $tipo->save();
 
-        $tipo = new TipoEvento();
-        $tipo->nombre="Bautizo";
+        $tipo= new TipoEvento();
+        $tipo->tipo='Bautizo';
         $tipo->save();
 
-        $tipo = new TipoEvento();
-        $tipo->nombre="Graduacion";
+        $tipo= new TipoEvento();
+        $tipo->tipo='Graduacion';
         $tipo->save();
+
+        $tipo= new TipoEvento();
+        $tipo->tipo='Aniversario';
+        $tipo->save();
+
+        $tipo= new TipoEvento();
+        $tipo->tipo='Fiestas Patrias';
+        $tipo->save();
+
     }
 }

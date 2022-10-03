@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('images', function (Blueprint $table) {
+        Schema::create('rol_usuarios', function (Blueprint $table) {
             $table->id();
-            $table->string('url');
+            $table->unsignedBigInteger('idRol');
+            $table->foreign('idRol')->references('id')->on('rols');
+            $table->unsignedBigInteger('idUser');
+            $table->foreign('idUser')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('images');
+        Schema::dropIfExists('rol_usuarios');
     }
 };

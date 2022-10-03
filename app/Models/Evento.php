@@ -10,7 +10,7 @@ class Evento extends Model
     use HasFactory;
     protected $guarded=['id','created_at','updated_at'];
 
-    public function TipoEvento(){
+    /* public function TipoEvento(){
         return $this->belongsTo(TipoEvento::class);
-    }
+    } */
 }
