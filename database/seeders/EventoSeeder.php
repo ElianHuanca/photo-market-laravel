@@ -16,7 +16,9 @@ class EventoSeeder extends Seeder
     public function run()
     {
         $evento = new Evento();
-        $evento->fecha='15-10-2022';
+        $evento->titulo='Cumpleaños De Mary';
+        $evento->descripcion='Estas invitado!!! ven y acompañame a celebrar mis 46años, no faltes te esperamos :D';
+        $evento->fecha='2022-10-15';
         $evento->hora='17:00';
         $evento->lugar='Av/Brasil C/CaboQuiroga #50';
         $evento->idTipo=1;
@@ -24,7 +26,9 @@ class EventoSeeder extends Seeder
         $evento->save();
 
         $evento = new Evento();
-        $evento->fecha='20-10-2022';
+        $evento->titulo='Boda De Hugo Y Angela';
+        $evento->descripcion='Estas invitado!!! ven y acompañame a celebrar nuestra boda, no faltes te esperamos :D';
+        $evento->fecha='2022-10-20';
         $evento->hora='19:00';
         $evento->lugar='C/Parabano #123';
         $evento->idTipo=3;

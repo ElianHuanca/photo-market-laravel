@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\FotoUsuarios;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +15,10 @@ class FotoUsuariosSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $fotoUser=new FotoUsuarios();
+        $fotoUser->idFoto=2;
+        $fotoUser->idUser=1;
+
+        
     }
 }

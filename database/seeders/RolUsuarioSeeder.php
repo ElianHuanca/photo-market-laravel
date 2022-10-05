@@ -37,6 +37,11 @@ class RolUsuarioSeeder extends Seeder
 
         $rolUser= new RolUsuario();
         $rolUser->idRol=3;
+        $rolUser->idUser=4;
+        $rolUser->save();
+
+        $rolUser= new RolUsuario();
+        $rolUser->idRol=3;
         $rolUser->idUser=5;
         $rolUser->save();
 
