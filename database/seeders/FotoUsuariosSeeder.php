@@ -17,7 +17,13 @@ class FotoUsuariosSeeder extends Seeder
     {
         $fotoUser=new FotoUsuarios();
         $fotoUser->idFoto=2;
+        $fotoUser->idUser=2;
+        $fotoUser->save();
+
+        $fotoUser=new FotoUsuarios();
+        $fotoUser->idFoto=4;
         $fotoUser->idUser=1;
+        $fotoUser->save();
 
         
     }

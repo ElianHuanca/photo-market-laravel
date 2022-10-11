@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Aws\Rekognition\RekognitionClient;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 
 class FotoController extends Controller
 {
@@ -23,8 +23,14 @@ class FotoController extends Controller
     } */
     
 
-    public function getFotos($idUser){
-        
+    public function getFotos($idUser,$idEvento){
+        $fotos = DB::table('fotos')
+            ->join('foto_usuarios', 'fotos.id', '=', 'foto_usuarios.idFoto')
+            ->select('fotos.*')
+            ->where('foto_usuarios.idUser',$idUser)
+            ->where('fotos.idEvento',$idEvento)
+            ->get();
+        return $fotos;
     }
     public function comparerImages(Request $request){
         //return response()->json(['mensaje' => 'si llega al método de la petición']);

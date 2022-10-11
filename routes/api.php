@@ -32,3 +32,5 @@ Route::get('getEventoFotografo/{idUser}', [EventoController::class, 'getEventoFo
 Route::get('getEventoOrganizador/{idUser}', [EventoController::class, 'getEventoOrganizador']);
 Route::post('postEvento', [EventoController::class, 'postEvento']);
 
+Route::get('getFotos/{idUser}/{idEvento}', [FotoController::class, 'getFotos']);
+
