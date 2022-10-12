@@ -26,6 +26,8 @@ Route::post('comparerImages', [FotoController::class, 'comparerImages']);
 Route::post('userPhothos', [AuthController::class, 'userPhothos']);
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
+Route::get('getUserByEmail/{email}', [AuthController::class, 'getUserByEmail']);
+
 
 Route::get('getEventoParticipante/{idUser}', [EventoController::class, 'getEventoParticipante']);
 Route::get('getEventoFotografo/{idUser}', [EventoController::class, 'getEventoFotografo']);
@@ -33,4 +35,3 @@ Route::get('getEventoOrganizador/{idUser}', [EventoController::class, 'getEvento
 Route::post('postEvento', [EventoController::class, 'postEvento']);
 
 Route::get('getFotos/{idUser}/{idEvento}', [FotoController::class, 'getFotos']);
-

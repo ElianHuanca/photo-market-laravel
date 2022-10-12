@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('idRol');
             $table->foreign('idRol')->references('id')->on('rols');
+            //$table->string('idUser');
             $table->unsignedBigInteger('idUser');
             $table->foreign('idUser')->references('id')->on('users');
             $table->timestamps();
