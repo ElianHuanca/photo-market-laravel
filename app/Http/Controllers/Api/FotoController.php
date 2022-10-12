@@ -21,18 +21,20 @@ class FotoController extends Controller
             return response()->json(['message' => 'Error al subir el aarchivo']);
         }
     } */
-    
 
-    public function getFotos($idUser,$idEvento){
+
+    public function getFotos($idUser, $idEvento)
+    {
         $fotos = DB::table('fotos')
             ->join('foto_usuarios', 'fotos.id', '=', 'foto_usuarios.idFoto')
             ->select('fotos.*')
-            ->where('foto_usuarios.idUser',$idUser)
-            ->where('fotos.idEvento',$idEvento)
+            ->where('foto_usuarios.idUser', $idUser)
+            ->where('fotos.idEvento', $idEvento)
             ->get();
         return $fotos;
     }
-    public function comparerImages(Request $request){
+    public function comparerImages(Request $request)
+    {
         //return response()->json(['mensaje' => 'si llega al método de la petición']);
 
         if ($request->hasFile('file') && $request->hasFile('file1')) {
@@ -64,6 +66,17 @@ class FotoController extends Controller
         } else {
             return response()->json(['message' => 'Error al subir el archivo']);
         }
-    
+    }
+
+    public function subirFotos(Request $request)
+    {
+        return $request;
+        $files = $request->file('files');
+
+        if ($request->hasFile('files')) {
+            foreach ($files as $file) {
+                //$file->store('users/' . $this->user->id . '/messages');
+            }
+        }
     }
 }

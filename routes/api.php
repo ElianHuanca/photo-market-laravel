@@ -22,6 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('comparerImages', [FotoController::class, 'comparerImages']);
+Route::post('subirFotos', [FotoController::class, 'subirFotos']);
+
 
 Route::post('userPhothos', [AuthController::class, 'userPhothos']);
 Route::post('register', [AuthController::class, 'register']);
