@@ -26,6 +26,8 @@ Route::post('comparerImages', [FotoController::class, 'comparerImages']);
 Route::get('getEventoFotografo/{idUser}', [EventoController::class, 'getEventoFotografo']);
 Route::post('postEvento', [EventoController::class, 'postEvento']);
 Route::post('postFoto', [FotoController::class, 'postFoto']);
+Route::post('subirFotos', [FotoController::class, 'subirFotos']);
+
 
 //Flutter
 Route::post('userPhothos', [AuthController::class, 'userPhothos']);
@@ -36,3 +38,10 @@ Route::get('getEventoOrganizador/{idUser}', [EventoController::class, 'getEvento
 //AMBOS
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
+Route::get('getUserByEmail/{email}', [AuthController::class, 'getUserByEmail']);
+Route::get('getEventoParticipante/{idUser}', [EventoController::class, 'getEventoParticipante']);
+Route::get('getEventoFotografo/{idUser}', [EventoController::class, 'getEventoFotografo']);
+Route::get('getEventoOrganizador/{idUser}', [EventoController::class, 'getEventoOrganizador']);
+Route::post('postEvento', [EventoController::class, 'postEvento']);
+
+Route::get('getFotos/{idUser}/{idEvento}', [FotoController::class, 'getFotos']);

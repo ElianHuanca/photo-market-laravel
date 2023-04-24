@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('idFoto')->references('id')->on('fotos');
             $table->unsignedBigInteger('idUser');   //Clientes
             $table->foreign('idUser')->references('id')->on('users');
+            $table->boolean('comprado')->default(false);//0 es False y 1 es true
             $table->timestamps();
         });
     }
