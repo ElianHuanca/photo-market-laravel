@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
+    public function getUser($email){
+        if (!DB::table('users')->where('email', $email)->exists())
+            return response()->json(['message' => 'No existe un usuario con ese email.'], 404);
+        $user = User::where('email', $email)->firstOrFail();
+        return $user;
+    }
     public function login(Request $request){
         $request->validate([            
             'email' => 'required|string',

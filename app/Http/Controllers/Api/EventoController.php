@@ -33,6 +33,16 @@ class EventoController extends Controller
         return $eventos;
     }
 
+    public function participarEvento(Request $request){
+        if(DB::table('participantes')->where('idUser', $request->idUser)->where('idEvento', $request->idEvento)->exists())
+            return response()->json(['message' => 'El Usuario ya participa en el evento']);
+        $participante = new Participante();
+        $participante->idUser=$request->idUser;
+        $participante->idEvento=$request->idEvento;
+        $participante->save();
+        return $participante;
+    }
+
     public function postEvento(Request $request){
         $rol = DB::table('rol_usuarios')
         ->join('users', 'rol_usuarios.idUser', '=', 'users.id')

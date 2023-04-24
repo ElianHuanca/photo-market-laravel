@@ -15,6 +15,12 @@ class FotoUsuariosSeeder extends Seeder
      */
     public function run()
     {
+        
+        $fotoUser=new FotoUsuarios();
+        $fotoUser->idFoto=1;
+        $fotoUser->idUser=2;
+        $fotoUser->save();
+
         $fotoUser=new FotoUsuarios();
         $fotoUser->idFoto=2;
         $fotoUser->idUser=2;
@@ -25,6 +31,16 @@ class FotoUsuariosSeeder extends Seeder
         $fotoUser->idUser=1;
         $fotoUser->save();
 
+        $fotoUser=new FotoUsuarios();
+        $fotoUser->idFoto=1;
+        $fotoUser->idUser=1;
+        $fotoUser->comprado=true;
+        $fotoUser->save();
+
+        $fotoUser=new FotoUsuarios();
+        $fotoUser->idFoto=2;
+        $fotoUser->idUser=1;
+        $fotoUser->save();
         
     }
 }
