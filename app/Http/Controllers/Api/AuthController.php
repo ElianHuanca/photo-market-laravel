@@ -29,26 +29,35 @@ class AuthController extends Controller
     }
 
     public function register(Request $request){
+        
         $request->validate([
-            /* 'name'=> 'required|string', */
+            'name'=> 'required|string',
             'email' => 'required|string',
             'password' => 'required|string',
+            'foto' => 'required',
+            'idRol' => 'required'
         ]);
+
         if (DB::table('users')->where('email', $request->email)->exists())
             return response()->json(['message' => 'Ya existe un usuario con ese email.'], 404);
-        $user = new User();
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);
-        $user->save();
-
-        $rol = new RolUsuario();
-        $rol->idRol=1;
-        $rol->idUser=$user->id;
-        $rol->save();
-        return $user;
+        
+        if ($request->hasFile('foto')) {
+            $user = new User();
+            $path = $request->file('foto')->store("user{$user->id}", 's3');        
+            $user->url = Storage::disk('s3')->url($path);    
+            $user->name=$request->name;        
+            $user->email = $request->email;
+            $user->password = bcrypt($request->password);
+            $user->idRol=$request->idRol;
+            $user->save();
+            //$newContent->save();
+            return $user;
+        } else {
+            return response()->json(['message' => 'Error al registrarse']);
+        }
     }
 
-    public function userPhothos(Request $request)
+    /*public function userPhothos(Request $request)
     {
         $request->validate([
             'email' => 'required|string',
@@ -68,5 +77,5 @@ class AuthController extends Controller
         } else {
             return response()->json(['message' => 'Error al subir el aarchivo']);
         }   
-    }
+    }*/
 }

@@ -15,7 +15,7 @@ class FotoSeeder extends Seeder
      */
     public function run()
     {
-        $foto = new Foto();
+        /*$foto = new Foto();
         $foto->url='https://imgwoman.elperiodico.com/be/53/59/keira-knightley-vuelve-piratas-caribe-650x422.jpg';
         $foto->precio=10;
         $foto->idEvento=1;
@@ -37,6 +37,6 @@ class FotoSeeder extends Seeder
         $foto->url='https://www.cao.org.bo/wp-content/uploads/2022/08/2-1.jpg';
         $foto->precio=10;
         $foto->idEvento=2;
-        $foto->idUser=3;
+        $foto->idUser=3;*/
     }
 }
