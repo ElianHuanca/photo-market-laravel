@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('fotos', function (Blueprint $table) {
             $table->id();
             $table->String('url');
-            $table->unsignedDouble('precio')->default(10);
-            $table->unsignedBigInteger('idEvento');
+            $table->unsignedDouble('precio')->nullable();
+            $table->unsignedBigInteger('idEvento')->nullable();
             $table->foreign('idEvento')->references('id')->on('eventos');
             $table->unsignedBigInteger('idUser');   //Fotografo
             $table->foreign('idUser')->references('id')->on('users');

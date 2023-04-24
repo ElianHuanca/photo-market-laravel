@@ -20,9 +20,7 @@ return new class extends Migration
             $table->date('fecha');
             $table->time('hora');
             $table->string('lugar');
-            $table->string('qr')->nullable();
-            $table->unsignedBigInteger('idTipo');
-            $table->foreign('idTipo')->references('id')->on('tipo_eventos');
+            $table->string('qr')->nullable();        
             $table->unsignedBigInteger('idUser');
             $table->foreign('idUser')->references('id')->on('users');//Organizador
             $table->timestamps();

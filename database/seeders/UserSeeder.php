@@ -15,34 +15,44 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        //Clientes
         $user=new User();
-        $user->name = 'diana';
-        $user->email = 'diana@gmail.com';
+        $user->name = 'Diana Paniagua';
+        $user->email = 'Diana@gmail.com';
+        //$user->url="";
         $user->password = bcrypt('123456');
+        $user->idRol=1;
         $user->save();
 
         $user=new User();
-        $user->name = 'Jhonny';
-        $user->email = 'Jhonny@gmail.com';
+        $user->name = 'Elian Huanca';
+        $user->email = 'Elian@gmail.com';
+        //$user->url="";
         $user->password = bcrypt('123456');
+        $user->idRol=1;
         $user->save();
-
+        
+        //Fotografos
         $user=new User();
-        $user->name = 'Javi';
-        $user->email = 'Javi@gmail.com';
+        $user->name = 'Isela Huanca';
+        $user->email = 'Isela@gmail.com';
         $user->password = bcrypt('123456');
+        $user->idRol=2;
         $user->save();
         
         $user=new User();
-        $user->name = 'aldo';
-        $user->email = 'aldo@gmail.com';
+        $user->name = 'Aldo Choque';
+        $user->email = 'Aldo@gmail.com';
         $user->password = bcrypt('123456');
+        $user->idRol=2;
         $user->save();
 
+        //Organizador
         $user=new User();
-        $user->name = 'Emma';
-        $user->email = 'Emma@gmail.com';
+        $user->name = 'Mary Choque';
+        $user->email = 'Mary@gmail.com';
         $user->password = bcrypt('123456');
+        $user->idRol=3;
         $user->save();
     }
 }

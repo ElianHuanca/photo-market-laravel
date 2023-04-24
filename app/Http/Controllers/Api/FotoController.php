@@ -12,18 +12,19 @@ use Illuminate\Support\Facades\Storage;
 
 class FotoController extends Controller
 {
-    /* public function postImage(Request $request)
+    public function postFoto(Request $request)
     {
         if ($request->hasFile('file')) {
             $path = $request->file('file')->store("1", 's3');
-            $newContent = new Image();
-            $newContent->url = Storage::disk('s3')->url($path);
-            $newContent->save();
+            $newContent=Storage::disk('s3')->url($path);
+            //$newContent = new Image();
+            //$newContent->url = Storage::disk('s3')->url($path);            
+            //$newContent->save();
             return response()->json(['message' => 'archivo subido con éxito']);
         } else {
             return response()->json(['message' => 'Error al subir el aarchivo']);
         }
-    } */
+    } 
 
     public function putFotoUsuario(Request $request){
         $fotoUser=FotoUsuarios::where('idFoto',$request->idFoto)->where('idUser',$request->idUser)->firstOrFail();
@@ -33,7 +34,9 @@ class FotoController extends Controller
         return $fotoUser;
     }
 
-    public function getFotos($idUser,$idEvento){
+
+    public function getFotos($idUser, $idEvento)
+    {
         $fotos = DB::table('fotos')
             ->join('foto_usuarios', 'fotos.id', '=', 'foto_usuarios.idFoto')
             ->select('fotos.*','foto_usuarios.comprado')
@@ -93,9 +96,18 @@ class FotoController extends Controller
             ]);
             $resultLabels = $results->get('FaceMatches');
             return $resultLabels;
-            return response()->json(['message' => 'no se detectaron etiquetas']);
-        /* } else {
-            return response()->json(['message' => 'Error al subir el archivo']);
-        } */
+           
+    }
+
+    public function subirFotos(Request $request)
+    {
+        return $request;
+        $files = $request->file('files');
+
+        if ($request->hasFile('files')) {
+            foreach ($files as $file) {
+                //$file->store('users/' . $this->user->id . '/messages');
+            }
+        }
     }
 }
