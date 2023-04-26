@@ -14,13 +14,10 @@ class FotoController extends Controller
 {
     public function postFoto(Request $request)
     {
-        if ($request->hasFile('file')) {
-            $path = $request->file('file')->store("1", 's3');
+        if ($request->hasFile('foto')) {
+            $path = $request->file('foto')->store("prueba", 's3');
             $newContent=Storage::disk('s3')->url($path);
-            //$newContent = new Image();
-            //$newContent->url = Storage::disk('s3')->url($path);            
-            //$newContent->save();
-            return response()->json(['message' => 'archivo subido con éxito']);
+            return $newContent;            
         } else {
             return response()->json(['message' => 'Error al subir el aarchivo']);
         }
@@ -69,27 +66,24 @@ class FotoController extends Controller
     }
 
     public function comparerImages(Request $request){
-            $image1= substr($request->file1,38,strlen($request->file1));
-            $image2= substr($request->file2,38,strlen($request->file2));
+            $image1= substr($request->file1,37,strlen($request->file1));//https://pruebas3000.s3.amazonaws.com/prueba/Vl5dWUqgUtoRGHdANyDRkh3DtA8xBIYtSn0Ux6F8.jpg
+            //return $image1;//image1=prueba/Vl5dWUqgUtoRGHdANyDRkh3DtA8xBIYtSn0Ux6F8.jpg
+            $image2= substr($request->file2,37,strlen($request->file2));//        
             $client = new RekognitionClient([
                 'region' => env('AWS_DEFAULT_REGION'),
                 'version' => 'latest',
-            ]);
-            /* $image = fopen($request->file('file')->getPathname(), 'r');
-            $bytes = fread($image, $request->file('file')->getSize());
-            $image1 = fopen($request->file('file1')->getPathname(), 'r');
-            $bytes1 = fread($image1, $request->file('file1')->getSize()); */
+            ]);            
             $results = $client->compareFaces([
                 'SimilarityThreshold' => 0,
                 'SourceImage' => [
                     'S3Object' => [
-                        'Bucket' => 'sw1-proyects',
+                        'Bucket' => 'pruebas3000',
                         'Name' => $image1,
                     ],
                 ],
                 'TargetImage' => [
                     'S3Object' => [
-                        'Bucket' => 'sw1-proyects',
+                        'Bucket' => 'pruebas3000',
                         'Name' => $image2,
                     ],
                 ],

@@ -25,7 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('comparerImages', [FotoController::class, 'comparerImages']);
 Route::get('getEventoFotografo/{idUser}', [EventoController::class, 'getEventoFotografo']);
 Route::post('postEvento', [EventoController::class, 'postEvento']);
-Route::post('postFoto', [FotoController::class, 'postFoto']);
+Route::post('postFoto', [FotoController::class, 'postFoto']);//Subida de Imagenes S3
 Route::post('subirFotos', [FotoController::class, 'subirFotos']);
 
 

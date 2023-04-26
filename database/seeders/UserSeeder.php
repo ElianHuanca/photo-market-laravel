@@ -18,16 +18,16 @@ class UserSeeder extends Seeder
         //Clientes
         $user=new User();
         $user->name = 'Diana Paniagua';
-        $user->email = 'Diana@gmail.com';
-        //$user->url="";
+        $user->email = 'diana@gmail.com';
+        $user->url="https://sw1-proyects.s3.amazonaws.com/user1/V7vcFu0dMH1JME4gCKboFBjMvCAMqhWl32dDUT2Q.jpg";
         $user->password = bcrypt('123456');
         $user->idRol=1;
         $user->save();
 
         $user=new User();
         $user->name = 'Elian Huanca';
-        $user->email = 'Elian@gmail.com';
-        //$user->url="";
+        $user->email = 'elian@gmail.com';
+        $user->url="https://sw1-proyects.s3.amazonaws.com/user2/RVCdTuNSj5dQwRNC6f2zPezgK4nc2vsCUkC8NkLA.jpg";
         $user->password = bcrypt('123456');
         $user->idRol=1;
         $user->save();
@@ -35,14 +35,14 @@ class UserSeeder extends Seeder
         //Fotografos
         $user=new User();
         $user->name = 'Isela Huanca';
-        $user->email = 'Isela@gmail.com';
+        $user->email = 'isela@gmail.com';
         $user->password = bcrypt('123456');
         $user->idRol=2;
         $user->save();
         
         $user=new User();
         $user->name = 'Aldo Choque';
-        $user->email = 'Aldo@gmail.com';
+        $user->email = 'aldo@gmail.com';
         $user->password = bcrypt('123456');
         $user->idRol=2;
         $user->save();
@@ -50,7 +50,7 @@ class UserSeeder extends Seeder
         //Organizador
         $user=new User();
         $user->name = 'Mary Choque';
-        $user->email = 'Mary@gmail.com';
+        $user->email = 'mary@gmail.com';
         $user->password = bcrypt('123456');
         $user->idRol=3;
         $user->save();

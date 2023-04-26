@@ -44,21 +44,20 @@ class EventoController extends Controller
     }
 
     public function postEvento(Request $request){
-        $rol = DB::table('rol_usuarios')
+        /* $rol = DB::table('rol_usuarios')
         ->join('users', 'rol_usuarios.idUser', '=', 'users.id')
         ->select('rol_usuarios.idRol')
         ->where('users.id',$request->idUser)
         ->where('rol_usuarios.idRol',3)
-        ->get();
-        if($rol->isNotEmpty()){
-            return response()->json(['message' => 'El Usuario es Organizador']);
+        ->get(); */
+        $user=DB::table('users')->where('id', $request->idUser)->first();
+        if($user->idRol==3){            
             $request->validate([
                 'titulo' => 'required|string',
                 'descripcion' => 'required|string',
-                'fecha' => 'required|date',
-                'hora' => 'required|time',
+                'fecha' => 'required',
+                'hora' => 'required',
                 'lugar' => 'required|string',
-                'idTipo' => 'required',
                 'idUser' => 'required',
             ]);
             $evento = new Evento();
@@ -66,8 +65,7 @@ class EventoController extends Controller
             $evento->descripcion=$request->descripcion;
             $evento->fecha=$request->fecha;
             $evento->hora=$request->hora;
-            $evento->lugar=$request->lugar;
-            $evento->idTipo=$request->idTipo;
+            $evento->lugar=$request->lugar;        
             $evento->idUser=$request->idUser;
             $evento->save();
             return $evento;

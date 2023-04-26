@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\RolUsuario;
 use App\Models\User;
-use App\Models\UserPhoto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -41,28 +39,28 @@ class AuthController extends Controller
         $request->validate([
             'name'=> 'required|string',
             'email' => 'required|string',
-            'password' => 'required|string',
-            'foto' => 'required',
+            'password' => 'required|string',        
             'idRol' => 'required'
         ]);
 
         if (DB::table('users')->where('email', $request->email)->exists())
             return response()->json(['message' => 'Ya existe un usuario con ese email.'], 404);
-        
-        if ($request->hasFile('foto')) {
-            $user = new User();
-            $path = $request->file('foto')->store("user{$user->id}", 's3');        
-            $user->url = Storage::disk('s3')->url($path);    
-            $user->name=$request->name;        
-            $user->email = $request->email;
-            $user->password = bcrypt($request->password);
-            $user->idRol=$request->idRol;
-            $user->save();
-            //$newContent->save();
-            return $user;
-        } else {
-            return response()->json(['message' => 'Error al registrarse']);
+        $user = new User();            
+        $user->name=$request->name;        
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->idRol=$request->idRol;
+        $user->save();
+        if($user->idRol==1){
+            if ($request->hasFile('foto')) {                            
+                $path = $request->file('foto')->store("user{$user->id}", 's3');        
+                $user->url = Storage::disk('s3')->url($path);                
+                $user->save();            
+            } else {
+                return response()->json(['message' => 'Error al registrarse']);
+            }
         }
+        return $user;
     }
 
     /*public function userPhothos(Request $request)
