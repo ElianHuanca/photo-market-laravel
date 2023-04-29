@@ -84,13 +84,5 @@ class AuthController extends Controller
             return response()->json(['message' => 'Error al subir el aarchivo']);
         }
     }
-
-    public function getUserByEmail($email)
-    {
-        return response()->json(['message' => 'No existe un usuario con ese email.']);
-        if (!DB::table('users')->where('email', $email)->exists())
-            return response()->json(['message' => 'No existe un usuario con ese email.'], 404);
-        $user = User::where('email', $email)->firstOrFail();
-        return $user;
-    }*/
+    */
 }

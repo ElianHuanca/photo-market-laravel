@@ -19,22 +19,13 @@ class EventoController extends Controller
         return $eventos;
     }
 
-    public function getEventoFotografo($idUser){
-        $eventos = DB::table('eventos')
-            ->join('fotografos', 'eventos.id', '=', 'fotografos.idEvento')
-            ->select('eventos.*')
-            ->where('fotografos.idUser',$idUser)
-            ->get();
-        return $eventos;
-    }
-
     public function getEventoOrganizador($idUser){
         $eventos = DB::table('eventos')->where('idUser', $idUser)->get();
         return $eventos;
     }
 
-    public function participarEvento(Request $request){
-        if(DB::table('participantes')->where('idUser', $request->idUser)->where('idEvento', $request->idEvento)->exists())
+    public function participarEvento(Request $request){       
+        if(DB::table("Participantes")->where('idUser', $request->idUser)->where('idEvento', $request->idEvento)->exists())
             return response()->json(['message' => 'El Usuario ya participa en el evento']);
         $participante = new Participante();
         $participante->idUser=$request->idUser;
