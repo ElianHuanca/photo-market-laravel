@@ -13,11 +13,15 @@ use Illuminate\Support\Facades\Storage;
 class FotoController extends Controller
 {
     public function postFoto(Request $request){
-        if($request->hasFile('fotos')){            
-            $path = $request->file('fotos')->store("prueba", 's3');
-            return Storage::disk('s3')->url($path);
+        //return $request;
+        if($request->has('fotos')){            
+            foreach($request->file('fotos') as $file){
+                $path = $file->store("{$request->idUser}prueba{$request->idEvento}", 's3');
+                Storage::disk('s3')->url($path);
+            }   
+            return response()->json(['message' => 'Archivos Subidos con exito']);    
         }
-        return 'Hola';
+        return response()->json(['message' => 'Error al subir el archivo']);
     }
 
     public function postFotoByFotografo(Request $request)
@@ -45,7 +49,7 @@ class FotoController extends Controller
     }
 
 
-    public function getFotosUsuario($idUser, $idEvento)
+    public function getFotosCliente($idUser, $idEvento)
     {
         $fotos = DB::table('fotos')
             ->join('foto_usuarios', 'fotos.id', '=', 'foto_usuarios.idFoto')
@@ -54,6 +58,14 @@ class FotoController extends Controller
             ->where('fotos.idEvento',$idEvento)
             ->get();
         return $fotos;
+    }
+
+    public function getFotos($idUser,$idRol,$idEvento){
+        if($idRol==3){            
+            return DB::table('fotos')->where('idEvento',$idEvento)->get();            
+        }else{            
+            return DB::table('fotos')->where('idEvento',$idEvento)->where('idUser',$idUser)->get();        
+        }
     }
 
     public function postFotoByEvento(Request $request){
@@ -70,9 +82,8 @@ class FotoController extends Controller
                 $foto->idEvento=$request->idEvento;
                 $foto->idUser=$request->idUser;
                 $foto->save();
-                $users= $this->getParticipantesByEvento($request->idEvento);
-
-                foreach($users as $user){
+                $users= $this->getParticipantesByEvento($request->idEvento);                
+                foreach($users as $user){                    
                     if($this->compararFotos($user->url,$foto->url)){
                         $fotoUser=new FotoUsuarios();
                         $fotoUser->idUser=$user->id;
@@ -81,11 +92,12 @@ class FotoController extends Controller
                     }                    
                 }            
             }
+            return response()->json(['message' => 'Fotos subidos con éxito']);
         }
-        return response()->json(['message' => 'archivo subido con éxito']);
+        return response()->json(['message' => 'problemas al subir las Fotos']);
     }
 
-    private function getParticipantesByEvento($idEvento){
+    public function getParticipantesByEvento($idEvento){
         $users = DB::table('users')
             ->join('participantes', 'users.id', '=', 'participantes.idUser')
             ->select('users.id','users.url')                        
@@ -94,12 +106,10 @@ class FotoController extends Controller
             ->get();
         return $users;        
     }
-
-    private function compararFotos($url1,$url2){
-        //return "hola";
-            $image1= substr($url1,38,strlen($url1));
-            //return $image1;
-            $image2= substr($url2,38,strlen($url2));        
+    //public function compararFotos(Request $request){
+    public function compararFotos($url1,$url2){                    
+            $img1=substr($url1,38,strlen($url1));
+            $img2=substr($url2,38,strlen($url2));
             $client = new RekognitionClient([
                 'region' => env('AWS_DEFAULT_REGION'),
                 'version' => 'latest',
@@ -109,18 +119,18 @@ class FotoController extends Controller
                 'SourceImage' => [
                     'S3Object' => [
                         'Bucket' => env('AWS_BUCKET'),//'sw1-proyects',
-                        'Name' => $image1,
+                        'Name' => $img1,
                     ],
                 ],
                 'TargetImage' => [
                     'S3Object' => [
                         'Bucket' => env('AWS_BUCKET'),//'sw1-proyects',
-                        'Name' => $image2,
+                        'Name' => $img2,
                     ],
                 ],
             ]);
             $resultLabels = $results->get('FaceMatches');
-            //$data=json_decode($resultLabels,true);
+            //return $resultLabels;
             return $resultLabels[0]['Similarity']>=51;
     }
     

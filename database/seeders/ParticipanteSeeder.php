@@ -31,14 +31,19 @@ class ParticipanteSeeder extends Seeder
         $participante->save();       
 
         $participante = new Participante();
+        $participante->idUser=4;
+        $participante->idEvento=1;
+        $participante->save();
+
+        $participante = new Participante();
         $participante->idUser=1;
         $participante->idEvento=2;
         $participante->save();
 
         $participante = new Participante();
-        $participante->idUser=4;
-        $participante->idEvento=1;
+        $participante->idUser=3;
+        $participante->idEvento=2;
         $participante->save();
-
+        
     }
 }

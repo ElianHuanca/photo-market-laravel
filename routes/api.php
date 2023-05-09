@@ -27,18 +27,18 @@ Route::post('postEvento', [EventoController::class, 'postEvento']);
 Route::post('postFotoByFotografo', [FotoController::class, 'postFotoByFotografo']);//Catalogo
 Route::post('postFotoByEvento', [FotoController::class, 'postFotoByEvento']);//IA y Subida De Fotos Del Evento
 Route::get('getEventoOrganizador/{idUser}', [EventoController::class, 'getEventoOrganizador']);
+Route::get('getFotos/{idUser}/{idRol}/{idEvento}', [FotoController::class, 'getFotos']);
 
 //Flutter(Cliente)
 Route::put('buyFotoUsuario/{idUser}/{idFoto}', [FotoController::class, 'buyFotoUsuario']);
+Route::get('getFotosCliente/{idUser}/{idEvento}', [FotoController::class, 'getFotosCliente']);
 
 //AMBOS
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 Route::get('getEventoParticipante/{idUser}', [EventoController::class, 'getEventoParticipante']);
-Route::get('getFotosUsuario/{idUser}/{idEvento}', [FotoController::class, 'getFotos']);
 Route::post('participarEvento', [EventoController::class, 'participarEvento']);
 
-//Route::get('getParticipantesByEvent/{idEvento}', [FotoController::class, 'getParticipantesByEvent']);
-//Route::post('compararFotos', [FotoController::class, 'compararFotos']);
-
+Route::get('getParticipantesByEvento/{idEvento}', [FotoController::class, 'getParticipantesByEvento']);
+Route::post('compararFotos', [FotoController::class, 'compararFotos']);
 Route::post('postFoto', [FotoController::class, 'postFoto']);
