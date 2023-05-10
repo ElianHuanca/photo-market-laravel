@@ -28,6 +28,7 @@ Route::post('postFotoByFotografo', [FotoController::class, 'postFotoByFotografo'
 Route::post('postFotoByEvento', [FotoController::class, 'postFotoByEvento']);//IA y Subida De Fotos Del Evento
 Route::get('getEventoOrganizador/{idUser}', [EventoController::class, 'getEventoOrganizador']);
 Route::get('getFotos/{idUser}/{idRol}/{idEvento}', [FotoController::class, 'getFotos']);
+Route::get('getFotografos', [EventoController::class, 'getFotografos']);
 
 //Flutter(Cliente)
 Route::put('buyFotoUsuario/{idUser}/{idFoto}', [FotoController::class, 'buyFotoUsuario']);
