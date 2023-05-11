@@ -33,6 +33,7 @@ Route::get('getFotografos', [EventoController::class, 'getFotografos']);
 //Flutter(Cliente)
 Route::put('buyFotoUsuario/{idUser}/{idFoto}', [FotoController::class, 'buyFotoUsuario']);
 Route::get('getFotosCliente/{idUser}/{idEvento}', [FotoController::class, 'getFotosCliente']);
+Route::post('userPhotho', [AuthController::class, 'userPhotho']);
 
 //AMBOS
 Route::post('register', [AuthController::class, 'register']);

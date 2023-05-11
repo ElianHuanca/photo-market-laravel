@@ -29,14 +29,14 @@ class FotoSeeder extends Seeder
         $foto->idUser=3;
         $foto->save();
         
-        /* $foto = new Foto();
-        $foto->url='https://sw1-proyects.s3.amazonaws.com/evento1/bx2woo5GvxwXT62SLBor9XUQVOmeB5LsnIHMeYBC.jpg';
+         $foto = new Foto();
+        $foto->url='https://sw1-proyects.s3.amazonaws.com/evento2/fWx0mGOYp0AnVyKcZk4N1KcY8h7zwQyFLbq3j6nz.jpg';
         $foto->precio=10;
-        $foto->idEvento=1;
+        $foto->idEvento=2;
         $foto->idUser=3;
         $foto->save();
 
-        $foto = new Foto();
+        /*$foto = new Foto();
         $foto->url='https://sw1-proyects.s3.amazonaws.com/evento1/O0bmtZdRo1U2RaKDWs3SniQ60QQLwJQcgNoVX9aq.jpg';
         $foto->precio=10;
         $foto->idEvento=1;

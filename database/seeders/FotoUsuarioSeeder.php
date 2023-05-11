@@ -24,22 +24,22 @@ class FotoUsuarioSeeder extends Seeder
         $foto_usuario= new FotoUsuarios();
         $foto_usuario->idFoto=2;
         $foto_usuario->idUser=1;
-        $foto_usuario->comprado=1;
+        $foto_usuario->comprado=0;
         $foto_usuario->save();
 
         $foto_usuario= new FotoUsuarios();
         $foto_usuario->idFoto=2;
         $foto_usuario->idUser=2;
-        $foto_usuario->comprado=1;
+        $foto_usuario->comprado=0;
         $foto_usuario->save();
 
-        /* $foto_usuario= new FotoUsuarios();
+        $foto_usuario= new FotoUsuarios();
         $foto_usuario->idFoto=3;
         $foto_usuario->idUser=1;
         $foto_usuario->comprado=0;
         $foto_usuario->save();
 
-        $foto_usuario= new FotoUsuarios();
+        /*$foto_usuario= new FotoUsuarios();
         $foto_usuario->idFoto=4;
         $foto_usuario->idUser=2;
         $foto_usuario->comprado=0;

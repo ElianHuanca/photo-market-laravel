@@ -7,6 +7,7 @@ use App\Models\Evento;
 use App\Models\Participante;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class EventoController extends Controller
 {
@@ -45,6 +46,18 @@ class EventoController extends Controller
     public function postEvento(Request $request)
     {
         
+        /*$url = "https://qrickit.com/api/qr.php?d=www.google.com.bo";
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HTTPGET, true);
+        //curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        curl_close($ch);
+        $path = $response('qr')->store("qr", 's3');
+        $url1=Storage::disk('s3')->url($path);
+        return $url1;*/
+
         $evento = new Evento();
         $evento->titulo = $request->titulo;
         $evento->descripcion = $request->descripcion;
@@ -53,10 +66,10 @@ class EventoController extends Controller
         $evento->lugar = $request->lugar;
         $evento->idUser = $request->idUser;
         $evento->save();
-        foreach($request->fotografos as $fotografo){
-            $participante=new Participante();
-            $participante->idEvento=$evento->id;
-            $participante->idUser=$fotografo;
+        foreach ($request->fotografos as $fotografo) {
+            $participante = new Participante();
+            $participante->idEvento = $evento->id;
+            $participante->idUser = $fotografo;
             $participante->save();
         }
         return $evento;

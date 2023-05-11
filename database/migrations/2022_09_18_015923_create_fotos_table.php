@@ -18,6 +18,7 @@ return new class extends Migration
             $table->String('url');
             $table->unsignedDouble('precio')->nullable();
             $table->unsignedBigInteger('idEvento')->nullable();
+            $table->unsignedBigInteger('cantidad')->default(0);
             $table->foreign('idEvento')->references('id')->on('eventos');
             $table->unsignedBigInteger('idUser');   //Fotografo
             $table->foreign('idUser')->references('id')->on('users');

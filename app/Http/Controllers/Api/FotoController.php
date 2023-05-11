@@ -45,6 +45,9 @@ class FotoController extends Controller
         $fotoUser=FotoUsuarios::where('idFoto',$idFoto)->where('idUser',$idUser)->firstOrFail();
         $fotoUser->comprado=!$fotoUser->comprado;
         $fotoUser->save();
+        $foto=Foto::where('id',$idFoto)->first();
+        $foto->cantidad++;
+        $foto->save();
         return $fotoUser;
     }
 
